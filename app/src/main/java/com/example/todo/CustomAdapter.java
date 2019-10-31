@@ -1,5 +1,6 @@
 package com.example.todo;
 
+
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -17,7 +18,7 @@ import java.util.List;
 
 public class CustomAdapter extends ArrayAdapter<Item> {
 
-    public CustomAdapter(Context context, int resource, List<Item> objects) {
+    CustomAdapter(Context context, int resource, List<Item> objects) {
         super(context, resource, objects);
     }
 
@@ -28,19 +29,21 @@ public class CustomAdapter extends ArrayAdapter<Item> {
         }
 
         final Item item = getItem(position);
-        CheckBox checkBox = convertView.findViewById(R.id.checkBox);
-        ImageButton deleteButton = convertView.findViewById(R.id.deleteButton);
 
-        item.setCheckBox(checkBox);
+        final CheckBox checkBox = convertView.findViewById(R.id.checkBox);
+        ImageButton deleteButton = convertView.findViewById(R.id.deleteButton);
+        checkBox.setChecked(item.getChecked());
+
+
 
         checkBox.setText(getItem(position).getContent());
-        checkBox.setChecked(false);
 
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 List<Item> checkedList = ((MainActivity)getContext()).getCheckedList();
 
+                item.setChecked(isChecked);
                 if (isChecked) {
                     checkedList.add(item);
                     buttonView.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
@@ -66,4 +69,3 @@ public class CustomAdapter extends ArrayAdapter<Item> {
         return convertView;
     }
 }
-

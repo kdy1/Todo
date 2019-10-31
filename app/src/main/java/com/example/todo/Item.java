@@ -1,24 +1,23 @@
 package com.example.todo;
 
-import android.widget.CheckBox;
 
 public class Item {
 
     private boolean isClear;
     private String content;
-    private CheckBox checkBox;
+    private boolean checked;
 
     public Item(String content) {
         this.isClear = false;
         this.content = content;
     }
 
-    public CheckBox getCheckBox() {
-        return checkBox;
+    public boolean getChecked() {
+        return checked;
     }
 
-    public void setCheckBox(CheckBox checkBox) {
-        this.checkBox = checkBox;
+    public void setChecked(boolean checked) {
+        this.checked = checked;
     }
 
     public boolean isClear() {
