@@ -84,6 +84,15 @@ public class MainActivity extends AppCompatActivity {
         allCheckButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                boolean isAllChecked = false;
+
+                if (list.size() == checkedList.size()) {
+                    isAllChecked = true;
+                }
+
+                for (final Item item : list) {
+                    item.getCheckBox().setChecked(!isAllChecked);
+                }
 //                boolean isAllChecked = false;
 //                Iterator<Item> iterator = list.iterator();
 //
